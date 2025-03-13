@@ -62,7 +62,7 @@ namespace EmployeeManagementSystem
                         connect.Open();
 
                         // Check if Employee ID already exists
-                        string checkEmID = "SELECT COUNT(*) FROM employees WHERE employee_id = @emID";
+                        string checkEmID = "SELECT COUNT(*) FROM employees WHERE employee_id = @emID AND delete_date IS NULL";
                         using (SqlCommand checkEm = new SqlCommand(checkEmID, connect))
                         {
                             checkEm.Parameters.AddWithValue("@emID", addEmployee_id.Text.Trim());
@@ -154,11 +154,42 @@ namespace EmployeeManagementSystem
                     addEmployee_picture.ImageLocation = imagePath;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex, "Error message",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex, "Error message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //if (e.RowIndex != -1)
+            //{
+            //    DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+            //    addEmployee_id.Text = row.Cells[1].Value.ToString();
+            //    addEmployee_fullname.Text = row.Cells[2].Value.ToString();
+            //    addEmployee_gender.Text = row.Cells[3].Value.ToString();
+            //    addEmployee_phonenumber.Text = row.Cells[4].Value.ToString();
+            //    addEmployee_position.Text = row.Cells[5].Value.ToString();
+
+            //    string imagePath = row.Cells[6].Value.ToString();
+
+            //    if (imagePath != null)
+            //    {
+            //        addEmployee_picture.Image = Image.FromFile(imagePath);
+            //    }
+            //    else
+            //    {
+            //        addEmployee_picture.Image = null;
+            //    }
+
+            //    addEmployee_status.Text = row.Cells[8].Value.ToString();
+            //}
         }
     }
 }
