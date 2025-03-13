@@ -30,13 +30,13 @@
         {
             panel1 = new Panel();
             panel5 = new Panel();
-            label6 = new Label();
+            dashboard_IE = new Label();
             label3 = new Label();
             panel4 = new Panel();
-            label5 = new Label();
+            dashboard_AE = new Label();
             label2 = new Label();
             panel3 = new Panel();
-            label4 = new Label();
+            dashboard_TE = new Label();
             label1 = new Label();
             panel2 = new Panel();
             panel1.SuspendLayout();
@@ -59,22 +59,22 @@
             // panel5
             // 
             panel5.BackColor = Color.FromArgb(0, 0, 64);
-            panel5.Controls.Add(label6);
+            panel5.Controls.Add(dashboard_IE);
             panel5.Controls.Add(label3);
             panel5.Location = new Point(540, 21);
             panel5.Name = "panel5";
             panel5.Size = new Size(226, 94);
             panel5.TabIndex = 1;
             // 
-            // label6
+            // dashboard_IE
             // 
-            label6.AutoSize = true;
-            label6.ForeColor = SystemColors.ButtonHighlight;
-            label6.Location = new Point(188, 18);
-            label6.Name = "label6";
-            label6.Size = new Size(17, 20);
-            label6.TabIndex = 3;
-            label6.Text = "0";
+            dashboard_IE.AutoSize = true;
+            dashboard_IE.ForeColor = SystemColors.ButtonHighlight;
+            dashboard_IE.Location = new Point(188, 18);
+            dashboard_IE.Name = "dashboard_IE";
+            dashboard_IE.Size = new Size(17, 20);
+            dashboard_IE.TabIndex = 3;
+            dashboard_IE.Text = "0";
             // 
             // label3
             // 
@@ -89,22 +89,22 @@
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(0, 0, 64);
-            panel4.Controls.Add(label5);
+            panel4.Controls.Add(dashboard_AE);
             panel4.Controls.Add(label2);
             panel4.Location = new Point(283, 21);
             panel4.Name = "panel4";
             panel4.Size = new Size(226, 94);
             panel4.TabIndex = 1;
             // 
-            // label5
+            // dashboard_AE
             // 
-            label5.AutoSize = true;
-            label5.ForeColor = SystemColors.ButtonHighlight;
-            label5.Location = new Point(195, 18);
-            label5.Name = "label5";
-            label5.Size = new Size(17, 20);
-            label5.TabIndex = 2;
-            label5.Text = "0";
+            dashboard_AE.AutoSize = true;
+            dashboard_AE.ForeColor = SystemColors.ButtonHighlight;
+            dashboard_AE.Location = new Point(195, 18);
+            dashboard_AE.Name = "dashboard_AE";
+            dashboard_AE.Size = new Size(17, 20);
+            dashboard_AE.TabIndex = 2;
+            dashboard_AE.Text = "0";
             // 
             // label2
             // 
@@ -119,22 +119,22 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(0, 0, 64);
-            panel3.Controls.Add(label4);
+            panel3.Controls.Add(dashboard_TE);
             panel3.Controls.Add(label1);
             panel3.Location = new Point(24, 21);
             panel3.Name = "panel3";
             panel3.Size = new Size(226, 94);
             panel3.TabIndex = 0;
             // 
-            // label4
+            // dashboard_TE
             // 
-            label4.AutoSize = true;
-            label4.ForeColor = SystemColors.ButtonHighlight;
-            label4.Location = new Point(183, 18);
-            label4.Name = "label4";
-            label4.Size = new Size(17, 20);
-            label4.TabIndex = 1;
-            label4.Text = "0";
+            dashboard_TE.AutoSize = true;
+            dashboard_TE.ForeColor = SystemColors.ButtonHighlight;
+            dashboard_TE.Location = new Point(183, 18);
+            dashboard_TE.Name = "dashboard_TE";
+            dashboard_TE.Size = new Size(17, 20);
+            dashboard_TE.TabIndex = 1;
+            dashboard_TE.Text = "0";
             // 
             // label1
             // 
@@ -178,12 +178,12 @@
         private Panel panel2;
         private Panel panel3;
         private Panel panel5;
-        private Label label6;
+        private Label dashboard_IE;
         private Label label3;
         private Panel panel4;
-        private Label label5;
+        private Label dashboard_AE;
         private Label label2;
-        private Label label4;
+        private Label dashboard_TE;
         private Label label1;
     }
 }
