@@ -70,6 +70,48 @@ namespace EmployeeManagementSystem
             return listdata;
         }
 
+        public List<EmployeeData> salaryemployeeListData()
+        {
+            List<EmployeeData> listdata = new List<EmployeeData>();
+
+            if (connect.State != ConnectionState.Open)
+            {
+                try
+                {
+                    connect.Open();
+                    string selectData = "SELECT * FROM employees WHERE delete_date IS NULL";
+
+                    using (SqlCommand cmd = new SqlCommand(selectData, connect))
+                    {
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            EmployeeData ed = new EmployeeData();
+                            ed.EmployeeID = reader["employee_id"].ToString();
+                            ed.Name = reader["full_name"].ToString();
+                            ed.Position = reader["position"].ToString();
+                            ed.Salary = (int)reader["salary"];
+
+                            listdata.Add(ed);
+
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex);
+                }
+                finally
+                {
+                    connect.Close();
+                }
+            }
+
+            return listdata;
+        }
+
 
     }
 }
