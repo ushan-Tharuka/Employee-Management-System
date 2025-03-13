@@ -138,6 +138,7 @@
             addEmployee_clearBtn.TabIndex = 15;
             addEmployee_clearBtn.Text = "Clear";
             addEmployee_clearBtn.UseVisualStyleBackColor = true;
+            addEmployee_clearBtn.Click += addEmployee_clearBtn_Click;
             // 
             // addEmployee_deleteBtn
             // 
@@ -147,6 +148,7 @@
             addEmployee_deleteBtn.TabIndex = 14;
             addEmployee_deleteBtn.Text = "Delete";
             addEmployee_deleteBtn.UseVisualStyleBackColor = true;
+            addEmployee_deleteBtn.Click += addEmployee_deleteBtn_Click;
             // 
             // addEmployee_updateBtn
             // 
@@ -156,6 +158,7 @@
             addEmployee_updateBtn.TabIndex = 13;
             addEmployee_updateBtn.Text = "Update";
             addEmployee_updateBtn.UseVisualStyleBackColor = true;
+            addEmployee_updateBtn.Click += addEmployee_updateBtn_Click;
             // 
             // addEmployee_addBtn
             // 

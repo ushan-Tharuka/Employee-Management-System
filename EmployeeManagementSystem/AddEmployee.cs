@@ -118,6 +118,7 @@ namespace EmployeeManagementSystem
                                                     "Information Message",
                                                     MessageBoxButtons.OK,
                                                     MessageBoxIcon.Information);
+                                    clearFields();
 
                                 }
                             }
@@ -168,28 +169,177 @@ namespace EmployeeManagementSystem
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (e.RowIndex != -1)
-            //{
-            //    DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-            //    addEmployee_id.Text = row.Cells[1].Value.ToString();
-            //    addEmployee_fullname.Text = row.Cells[2].Value.ToString();
-            //    addEmployee_gender.Text = row.Cells[3].Value.ToString();
-            //    addEmployee_phonenumber.Text = row.Cells[4].Value.ToString();
-            //    addEmployee_position.Text = row.Cells[5].Value.ToString();
+            if (e.RowIndex != -1)
+            {
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                addEmployee_id.Text = row.Cells[1].Value.ToString();
+                addEmployee_fullname.Text = row.Cells[2].Value.ToString();
+                addEmployee_gender.Text = row.Cells[3].Value.ToString();
+                addEmployee_phonenumber.Text = row.Cells[4].Value.ToString();
+                addEmployee_position.Text = row.Cells[5].Value.ToString();
 
-            //    string imagePath = row.Cells[6].Value.ToString();
+                string imagePath = row.Cells[6].Value.ToString();
 
-            //    if (imagePath != null)
-            //    {
-            //        addEmployee_picture.Image = Image.FromFile(imagePath);
-            //    }
-            //    else
-            //    {
-            //        addEmployee_picture.Image = null;
-            //    }
+                if (imagePath != null)
+                {
+                    addEmployee_picture.Image = Image.FromFile(imagePath);
+                }
+                else
+                {
+                    addEmployee_picture.Image = null;
+                }
 
-            //    addEmployee_status.Text = row.Cells[8].Value.ToString();
-            //}
+                addEmployee_status.Text = row.Cells[8].Value.ToString();
+            }
+        }
+
+        public void clearFields()
+        {
+            addEmployee_id.Text = "";
+            addEmployee_fullname.Text = "";
+            addEmployee_gender.SelectedIndex = -1;
+            addEmployee_phonenumber.Text = "";
+            addEmployee_position.SelectedIndex = -1;
+            addEmployee_status.SelectedIndex = -1;
+            addEmployee_picture.Image = null;
+        }
+
+        private void addEmployee_updateBtn_Click(object sender, EventArgs e)
+        {
+            if (addEmployee_id.Text == ""
+                || addEmployee_fullname.Text == ""
+                || addEmployee_gender.Text == ""
+                || addEmployee_phonenumber.Text == ""
+                || addEmployee_position.Text == ""
+                || addEmployee_status.Text == ""
+                || addEmployee_picture.Image == null)
+            {
+                MessageBox.Show("Please fill all blank fields"
+                    , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                DialogResult check = MessageBox.Show("Are you sure you want to UPDATE " +
+                    "Employee ID: " + addEmployee_id.Text.Trim() + "?", "Confirmation Message"
+                    , MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (check == DialogResult.Yes)
+                {
+                    try
+                    {
+                        connect.Open();
+                        DateTime today = DateTime.Today;
+
+                        string updateData = "UPDATE employees SET full_name = @fullName" +
+                            ", gender = @gender, contact_number = @contactNum" +
+                            ", position = @position, update_date = @updateDate, status = @status " +
+                            "WHERE employee_id = @employeeID";
+
+                        using (SqlCommand cmd = new SqlCommand(updateData, connect))
+                        {
+                            cmd.Parameters.AddWithValue("@fullName", addEmployee_fullname.Text.Trim());
+                            cmd.Parameters.AddWithValue("@gender", addEmployee_gender.Text.Trim());
+                            cmd.Parameters.AddWithValue("@contactNum", addEmployee_phonenumber.Text.Trim());
+                            cmd.Parameters.AddWithValue("@position", addEmployee_position.Text.Trim());
+                            cmd.Parameters.AddWithValue("@updateDate", today);
+                            cmd.Parameters.AddWithValue("@status", addEmployee_status.Text.Trim());
+                            cmd.Parameters.AddWithValue("@employeeID", addEmployee_id.Text.Trim());
+
+                            cmd.ExecuteNonQuery();
+
+                            displayEmployeeData();
+
+                            MessageBox.Show("Update successfully!"
+                                , "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            clearFields();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex
+                        , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        connect.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Cancelled."
+                        , "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            }
+        }
+
+        private void addEmployee_clearBtn_Click(object sender, EventArgs e)
+        {
+            clearFields();
+        }
+
+        private void addEmployee_deleteBtn_Click(object sender, EventArgs e)
+        {
+            if (addEmployee_id.Text == ""
+                || addEmployee_fullname.Text == ""
+                || addEmployee_gender.Text == ""
+                || addEmployee_phonenumber.Text == ""
+                || addEmployee_position.Text == ""
+                || addEmployee_status.Text == ""
+                || addEmployee_picture.Image == null)
+            {
+                MessageBox.Show("Please fill all blank fields"
+                    , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                DialogResult check = MessageBox.Show("Are you sure you want to DELETE " +
+                    "Employee ID: " + addEmployee_id.Text.Trim() + "?", "Confirmation Message"
+                    , MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (check == DialogResult.Yes)
+                {
+                    try
+                    {
+                        connect.Open();
+                        DateTime today = DateTime.Today;
+
+                        string updateData = "UPDATE employees SET delete_date = @deleteDate " +
+                            "WHERE employee_id = @employeeID";
+
+                        using (SqlCommand cmd = new SqlCommand(updateData, connect))
+                        {
+                            cmd.Parameters.AddWithValue("@deleteDate", today);
+                            cmd.Parameters.AddWithValue("@employeeID", addEmployee_id.Text.Trim());
+
+                            cmd.ExecuteNonQuery();
+
+                            displayEmployeeData();
+
+                            MessageBox.Show("Update successfully!"
+                                , "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            clearFields();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex
+                        , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        connect.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Cancelled."
+                        , "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            }
         }
     }
 }
