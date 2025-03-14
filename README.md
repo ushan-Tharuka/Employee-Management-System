@@ -72,9 +72,9 @@ A **desktop-based Employee Management System** built using **C# (.NET), Windows 
 ## 📬 Contact
 For any questions or feedback, feel free to reach out!
 
-👨‍💻 **Developer:** [Your Name]
-🔗 **LinkedIn:** [Your LinkedIn Profile]
-📧 **Email:** your.email@example.com
+👨‍💻 **Developer:** Ushan Tharuka
+🔗 **LinkedIn:** https://www.linkedin.com/in/ushan-tharuka
+📧 **Email:** ushantharuka2222@gmail.com
 
 ---
 
