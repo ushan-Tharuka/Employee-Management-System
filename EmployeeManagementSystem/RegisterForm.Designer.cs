@@ -195,6 +195,7 @@ namespace EmployeeManagementSystem
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "RegisterForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "RegisterForm";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
